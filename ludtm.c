@@ -422,7 +422,7 @@ int self_sys_core_setup()
 	int fd;
 
 	fd = open("/proc/sys/kernel/core_pattern", O_WRONLY);
-	if (!fd)
+	if (fd < 0)
 	{
 		perror("open core pattern fail");
 		exit(EXIT_FAILURE);
@@ -432,7 +432,7 @@ int self_sys_core_setup()
 	close(fd);
 
 	fd = open("/proc/sys/kernel/core_pipe_limit", O_WRONLY);
-	if (!fd)
+	if (fd < 0)
 	{
 		perror("open core pipe limit fail");
 		exit(EXIT_FAILURE);
